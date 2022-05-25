@@ -1,0 +1,16 @@
+<div class="modal" [ngClass]="{'modal-open': isModalOpen}">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span (click)="closeModal()" class="close">&times;</span>
+    <form [formGroup]="dogForm">
+      <label for="name">name</label>
+      <input type="text" name="name" formControlName="name" >
+      <label for="img">img url</label>
+      <input type="text" name="img" formControlName="img">
+      <button *ngIf="selectedDog.id === 0" type="button" (click)="saveDog()">Save</button>
+      <button *ngIf="selectedDog.id !== 0" type="button" (click)="updateDog()">Update</button>
+    </form>
+  </div>
+
+</div>

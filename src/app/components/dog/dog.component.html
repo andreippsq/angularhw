@@ -1,0 +1,7 @@
+<span>
+  {{ dog.name }}
+  <img src="{{dog.img}}" alt="{{dog.name }}">
+  <button (click)="editDog()">Edit</button>
+  <button (click)="deleteDog()">Delete</button>
+  <a routerLink="{{'/details/' + dog.id}}">read more...</a>
+</span>

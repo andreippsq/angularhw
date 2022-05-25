@@ -1,0 +1,29 @@
+<div *ngIf="!isLoading; then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock>
+  <button (click)="toggleModal(true)">Add dog</button>
+  <ul>
+    <li *ngFor="let dog of filteredDogList">
+      <app-dog
+        [dog]="dog"
+        (fetchDogs)="fetchDogs()"
+        (selectDog)="selectDog($event)"></app-dog>
+    </li>
+  </ul>
+  <div class="btn">
+    <button [disabled]="startIndex === 0" (click)="prevDogs()">Prev</button>
+    <button [disabled]="endIndex >= dogList.length" (click)="nextDogs()">Next</button>
+  </div>
+</ng-template>
+
+<ng-template #elseBlock>
+  <div>Loading...</div>
+</ng-template>
+
+<app-modal
+  [isModalOpen]="isModalOpen"
+  [selectedDog]="selectedDog"
+  (toggleModal)="toggleModal($event)"
+  (resetSelectedDog)="resetSelectedDog()"
+  (fetchDogs)="fetchDogs()">
+</app-modal>

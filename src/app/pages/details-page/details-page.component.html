@@ -1,0 +1,13 @@
+<div *ngIf="!isLoading; then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock>
+  <span>
+    {{ dog.name }}
+    <img src="{{dog.img}}" alt="{{dog.name }}">
+    <a routerLink="/">back</a>
+  </span>
+</ng-template>
+
+<ng-template #elseBlock>
+  <div>Loading...</div>
+</ng-template>
