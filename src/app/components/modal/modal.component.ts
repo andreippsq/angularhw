@@ -14,7 +14,12 @@ export class ModalComponent implements OnInit, OnDestroy, OnChanges {
   @Input() selectedArticle: IArticle = {
     id: 0,
     title: '',
-    imgUrl: ''
+    tag: '',
+    author: '',
+    date: '',
+    imgUrl: '',
+    saying: '',
+    content: ''
   }
 
   @Output() toggleModal: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -38,7 +43,12 @@ export class ModalComponent implements OnInit, OnDestroy, OnChanges {
     if (changes['isModalOpen'] && changes['selectedArticle']) {
       this.articleForm = new FormGroup({
         title: new FormControl(this.selectedArticle.title),
+        tag: new FormControl(this.selectedArticle.tag),
+        author: new FormControl(this.selectedArticle.author),
+        date: new FormControl(this.selectedArticle.date),
         imgUrl: new FormControl(this.selectedArticle.imgUrl),
+        saying: new FormControl(this.selectedArticle.saying),
+        content: new FormControl(this.selectedArticle.content)
       });
     }
     console.log(changes)

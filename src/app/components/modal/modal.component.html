@@ -8,6 +8,16 @@
       <input type="text" name="title" formControlName="title" >
       <label for="imgUrl">img url</label>
       <input type="text" name="imgUrl" formControlName="imgUrl">
+      <label for="tag">tag</label>
+      <input type="text" name="tag" formControlName="tag">
+      <label for="author">author</label>
+      <input type="text" name="author" formControlName="author">
+      <label for="date">date</label>
+      <input type="text" name="date" formControlName="date">
+      <label for="saying">saying</label>
+      <input type="text" name="saying" formControlName="saying">
+      <label for="content">content</label>
+      <input type="text" name="content" formControlName="content">
       <button *ngIf="selectedArticle.id === 0" type="button" (click)="saveArticle()">Save</button>
       <button *ngIf="selectedArticle.id !== 0" type="button" (click)="updateArticle()">Update</button>
     </form>

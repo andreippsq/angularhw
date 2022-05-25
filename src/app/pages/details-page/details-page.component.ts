@@ -17,7 +17,12 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
   article: IArticle = {
     id: 0,
     title: '',
-    imgUrl : ''
+    tag: '',
+    author: '',
+    date: '',
+    imgUrl : '',
+    saying: '',
+    content: ''
   }
 
   constructor(

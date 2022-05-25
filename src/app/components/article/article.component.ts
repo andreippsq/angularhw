@@ -11,7 +11,12 @@ import { ArticlesService } from 'src/app/services/articles.service';
 export class ArticleComponent implements OnInit, OnDestroy {
   @Input() article: IArticle = {
     title: '',
+    tag: '',
+    author: '',
+    date: '',
     imgUrl: '',
+    saying: '',
+    content: '',
     id: 0
   }; 
 

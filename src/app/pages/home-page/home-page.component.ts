@@ -21,7 +21,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
   selectedArticle: IArticle = {
     id: 0,
     title: '',
-    imgUrl: ''
+    tag: '',
+    author: '',
+    date: '',
+    imgUrl: '',
+    saying: '',
+    content: ''
   }
 
   constructor(private articleService: ArticlesService) { }
@@ -57,7 +62,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.selectedArticle = {
       id: 0,
       title: '',
-      imgUrl: ''
+      tag: '',
+      author: '',
+      date: '',
+      imgUrl: '',
+      saying: '',
+      content: ''
     }
   }
 
