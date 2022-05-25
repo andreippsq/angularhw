@@ -1,0 +1,7 @@
+<span>
+  {{ article.title }}
+  <img src="{{article.imgUrl}}" alt="{{article.title }}">
+  <button (click)="editArticle()">Edit</button>
+  <button (click)="deleteArticle()">Delete</button>
+  <a routerLink="{{'/details/' + article.id}}">read more...</a>
+</span>

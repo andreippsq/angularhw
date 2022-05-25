@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { IDog } from 'src/app/model/idog';
-import { DogsService } from 'src/app/services/dogs.service';
+import { IArticle } from 'src/app/model/iarticle';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-modal',
@@ -11,22 +11,22 @@ import { DogsService } from 'src/app/services/dogs.service';
 })
 export class ModalComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isModalOpen = false;
-  @Input() selectedDog: IDog = {
+  @Input() selectedArticle: IArticle = {
     id: 0,
-    name: '',
-    img: ''
+    title: '',
+    imgUrl: ''
   }
 
   @Output() toggleModal: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() fetchDogs: EventEmitter<string> = new EventEmitter<string>();
-  @Output() resetSelectedDog: EventEmitter<string> = new EventEmitter<string>();
+  @Output() fetchArticles: EventEmitter<string> = new EventEmitter<string>();
+  @Output() resetSelectedArticle: EventEmitter<string> = new EventEmitter<string>();
 
-  dogForm = new FormGroup({});
+  articleForm = new FormGroup({});
 
-  addDogSubscription = new Subscription();
-  updateDogSubscription = new Subscription();
+  addArticleSubscription = new Subscription();
+  updateArticleSubscription = new Subscription();
 
-  constructor(private dogService: DogsService) { }
+  constructor(private articleService: ArticlesService) { }
 
   ngOnInit(): void {
 
@@ -35,10 +35,10 @@ export class ModalComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // changes.prop contains the old and the new value...
 
-    if (changes['isModalOpen'] && changes['selectedDog']) {
-      this.dogForm = new FormGroup({
-        name: new FormControl(this.selectedDog.name),
-        img: new FormControl(this.selectedDog.img),
+    if (changes['isModalOpen'] && changes['selectedArticle']) {
+      this.articleForm = new FormGroup({
+        title: new FormControl(this.selectedArticle.title),
+        imgUrl: new FormControl(this.selectedArticle.imgUrl),
       });
     }
     console.log(changes)
@@ -46,32 +46,32 @@ export class ModalComponent implements OnInit, OnDestroy, OnChanges {
 
   closeModal() {
     this.toggleModal.emit(false);
-    this.resetSelectedDog.emit('');
+    this.resetSelectedArticle.emit('');
   }
 
-  saveDog() {
-    const body = this.dogForm.getRawValue();
-    this.addDogSubscription = this.dogService.addDog(body).subscribe((response) => {
+  saveArticle() {
+    const body = this.articleForm.getRawValue();
+    this.addArticleSubscription = this.articleService.addArticle(body).subscribe((response) => {
       console.log(response);
       this.closeModal();
-      this.fetchDogs.emit('');
-      this.resetSelectedDog.emit('');
+      this.fetchArticles.emit('');
+      this.resetSelectedArticle.emit('');
     });
   }
 
-  updateDog() {
-    const body = {...this.dogForm.getRawValue(), id: this.selectedDog.id};
-    this.updateDogSubscription = this.dogService.updateDog(body).subscribe((response) => {
+  updateArticle() {
+    const body = {...this.articleForm.getRawValue(), id: this.selectedArticle.id};
+    this.updateArticleSubscription = this.articleService.updateArticle(body).subscribe((response) => {
       console.log(response);
       this.closeModal();
-      this.fetchDogs.emit('');
-      this.resetSelectedDog.emit('');
+      this.fetchArticles.emit('');
+      this.resetSelectedArticle.emit('');
     });
   }
 
   ngOnDestroy(): void {
-    this.addDogSubscription.unsubscribe();
-    this.updateDogSubscription.unsubscribe();
+    this.addArticleSubscription.unsubscribe();
+    this.updateArticleSubscription.unsubscribe();
   }
 
 

@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { IDog } from 'src/app/model/idog';
-import { DogsService } from 'src/app/services/dogs.service';
+import { IArticle } from 'src/app/model/iarticle';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,67 +10,67 @@ import { DogsService } from 'src/app/services/dogs.service';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
-  dogList: IDog[] = [];
-  filteredDogList:IDog[] = [];
-  numberOfDogDisplayed = 3
+  articleList: IArticle[] = [];
+  filteredArticleList:IArticle[] = [];
+  numberOfArticleDisplayed = 3
   startIndex = 0;
-  endIndex = 0 + this.numberOfDogDisplayed - 1;
+  endIndex = 0 + this.numberOfArticleDisplayed - 1;
   isLoading = false;
-  dogsSubscription = new Subscription();
+  articlesSubscription = new Subscription();
   isModalOpen = false;
-  selectedDog: IDog = {
+  selectedArticle: IArticle = {
     id: 0,
-    name: '',
-    img: ''
+    title: '',
+    imgUrl: ''
   }
 
-  constructor(private dogService: DogsService) { }
+  constructor(private articleService: ArticlesService) { }
 
   ngOnInit(): void {
-    this.fetchDogs();
+    this.fetchArticles();
   }
 
-  fetchDogs() {
+  fetchArticles() {
     this.isLoading = false;
-    this.dogsSubscription = this.dogService.getDogs().subscribe((response) => {
-      this.dogList = response;
-      this.filteredDogList = response.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
+    this.articlesSubscription = this.articleService.getArticles().subscribe((response) => {
+      this.articleList = response;
+      this.filteredArticleList = response.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
       this.isLoading = false;
     });
   }
 
-  prevDogs() {
-    this.startIndex = this.startIndex - this.numberOfDogDisplayed;
-    this.endIndex = this.endIndex - this.numberOfDogDisplayed;
-    this.filteredDogList = this.dogList.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
+  prevArticles() {
+    this.startIndex = this.startIndex - this.numberOfArticleDisplayed;
+    this.endIndex = this.endIndex - this.numberOfArticleDisplayed;
+    this.filteredArticleList = this.articleList.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
 
   }
 
-  nextDogs() {
-    this.startIndex = this.startIndex + this.numberOfDogDisplayed;
-    this.endIndex = this.endIndex + this.numberOfDogDisplayed;
-    this.filteredDogList = this.dogList.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
+  nextArticles() {
+    this.startIndex = this.startIndex + this.numberOfArticleDisplayed;
+    this.endIndex = this.endIndex + this.numberOfArticleDisplayed;
+    this.filteredArticleList = this.articleList.filter((d, i) =>  i >= this.startIndex && i <= this.endIndex )
   }
 
 
-  resetSelectedDog() {
-    this.selectedDog = {
+  resetSelectedArticle() {
+    this.selectedArticle = {
       id: 0,
-      name: '',
-      img: ''
+      title: '',
+      imgUrl: ''
     }
   }
 
   ngOnDestroy(): void {
-    this.dogsSubscription.unsubscribe();
+    this.articlesSubscription.unsubscribe();
   }
 
   toggleModal(modalState: boolean) {
     this.isModalOpen = modalState;
   }
 
-  selectDog(selectedDog: IDog) {
-    this.selectedDog = selectedDog;
+  selectArticle(selectedArticle: IArticle) {
+    this.selectedArticle = selectedArticle;
     this.toggleModal(true);
   }
 

@@ -3,13 +3,13 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span (click)="closeModal()" class="close">&times;</span>
-    <form [formGroup]="dogForm">
-      <label for="name">name</label>
-      <input type="text" name="name" formControlName="name" >
-      <label for="img">img url</label>
-      <input type="text" name="img" formControlName="img">
-      <button *ngIf="selectedDog.id === 0" type="button" (click)="saveDog()">Save</button>
-      <button *ngIf="selectedDog.id !== 0" type="button" (click)="updateDog()">Update</button>
+    <form [formGroup]="articleForm">
+      <label for="title">title</label>
+      <input type="text" name="title" formControlName="title" >
+      <label for="imgUrl">img url</label>
+      <input type="text" name="imgUrl" formControlName="imgUrl">
+      <button *ngIf="selectedArticle.id === 0" type="button" (click)="saveArticle()">Save</button>
+      <button *ngIf="selectedArticle.id !== 0" type="button" (click)="updateArticle()">Update</button>
     </form>
   </div>
 

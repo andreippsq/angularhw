@@ -1,18 +1,18 @@
 <div *ngIf="!isLoading; then thenBlock else elseBlock"></div>
 
 <ng-template #thenBlock>
-  <button (click)="toggleModal(true)">Add dog</button>
+  <button (click)="toggleModal(true)">Add article</button>
   <ul>
-    <li *ngFor="let dog of filteredDogList">
+    <li *ngFor="let article of filteredArticleList">
       <app-dog
-        [dog]="dog"
-        (fetchDogs)="fetchDogs()"
-        (selectDog)="selectDog($event)"></app-dog>
+        [article]="article"
+        (fetchDogs)="fetchArticles()"
+        (selectArticle)="selectArticle($event)"></app-dog>
     </li>
   </ul>
   <div class="btn">
-    <button [disabled]="startIndex === 0" (click)="prevDogs()">Prev</button>
-    <button [disabled]="endIndex >= dogList.length" (click)="nextDogs()">Next</button>
+    <button [disabled]="startIndex === 0" (click)="prevArticles()">Prev</button>
+    <button [disabled]="endIndex >= articleList.length" (click)="nextArticles()">Next</button>
   </div>
 </ng-template>
 
@@ -22,8 +22,8 @@
 
 <app-modal
   [isModalOpen]="isModalOpen"
-  [selectedDog]="selectedDog"
+  [selectedArticle]="selectedArticle"
   (toggleModal)="toggleModal($event)"
-  (resetSelectedDog)="resetSelectedDog()"
-  (fetchDogs)="fetchDogs()">
+  (resetSelectedArticle)="resetSelectedArticle()"
+  (fetchArticles)="fetchArticles()">
 </app-modal>

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IDog } from 'src/app/model/idog';
-import { DogsService } from 'src/app/services/dogs.service';
+import { IArticle } from 'src/app/model/iarticle';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-details-page',
@@ -10,26 +10,26 @@ import { DogsService } from 'src/app/services/dogs.service';
   styleUrls: ['./details-page.component.css']
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
-  dogId!: string;
+  articleId!: string;
   routeSubscription =  new Subscription();
-  dogSubscription =  new Subscription();
+  articleSubscription =  new Subscription();
   isLoading = false;
-  dog: IDog = {
+  article: IArticle = {
     id: 0,
-    name: '',
-    img : ''
+    title: '',
+    imgUrl : ''
   }
 
   constructor(
     private actRoute: ActivatedRoute,
-    private dogService: DogsService
+    private articleService: ArticlesService
     ) {}
   ngOnInit() {
     this.routeSubscription = this.actRoute.paramMap.subscribe((params) => {
-      this.dogId = params.get('id')!;
+      this.articleId = params.get('id')!;
       this.isLoading = true;
-      this.dogSubscription = this.dogService.getDog(this.dogId).subscribe((response) => {
-        this.dog = response;
+      this.articleSubscription = this.articleService.getArticle(this.articleId).subscribe((response) => {
+        this.article = response;
         this.isLoading = false;
       })
     });

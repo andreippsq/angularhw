@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NotfoundPageComponent } from './pages/notfound-page/notfound-page.component';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { DogComponent } from './components/dog/dog.component';
+import { ArticleComponent } from './components/article/article.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotfoundPageComponent,
     DetailsPageComponent,
     HomePageComponent,
-    DogComponent,
+    ArticleComponent,
     ModalComponent,
   ],
   imports: [
