@@ -4,10 +4,10 @@
   <button (click)="toggleModal(true)">Add article</button>
   <ul>
     <li *ngFor="let article of filteredArticleList">
-      <app-dog
+      <app-article
         [article]="article"
-        (fetchDogs)="fetchArticles()"
-        (selectArticle)="selectArticle($event)"></app-dog>
+        (fetchArticles)="fetchArticles()"
+        (selectArticle)="selectArticle($event)"></app-article>
     </li>
   </ul>
   <div class="btn">

@@ -4,7 +4,7 @@ import { IArticle } from 'src/app/model/iarticle';
 import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
-  selector: 'app-dog',
+  selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
